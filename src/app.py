@@ -63,5 +63,3 @@ def excluir():
     else:
         print('Produto não encontrado.')
 
-cadastro()
-excluir()
