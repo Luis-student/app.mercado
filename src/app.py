@@ -1,6 +1,7 @@
 import mysql.connector
 from flask import Flask, jsonify, request
-app =(__name__)
+
+app = Flask(__name__)
 
 banco = mysql.connector.connect(
     host="localhost",
@@ -16,50 +17,49 @@ cursor.execute("USE supermercado")
 
 
 # cadastro de produtos 
+@app.route('/cadastro', methods=['POST'])
 def cadastro():
-    nome_produto = input("ensira o nome do produto : ")
-    valor_produto = float(input("ensira o valor do produto : "))
-    variacao = input("variação do produto : ")
+
+    dados = request.get_json()
+
+    nome_produto = dados['nome_produto']
+    valor_produto = dados['valor_produto']
+    variacao = dados['variacao']
 
     cursor.execute(f"INSERT INTO produtos (nome_produto, valor_produto, variacao) VALUES ('{nome_produto}', {valor_produto}, '{variacao}')")
     banco.commit()
 
-    print("produto cadastrado com sucesso! ")
+    return jsonify({"message": 'produto cadastrado com sucesso! '})
 
-# listar produtos 
+# listar produtos     
+@app.route('/listar', methods=['GET'])
 def listar():
-    cursor.execute('SELECT * FROM produtos ')
-    produtos  = cursor.fetchall()
+    cursor.execute('SELECT * FROM produtos')
+    produtos = cursor.fetchall()
 
-    for produtos in produtos :
-        print(produtos) 
+    return jsonify(produtos)
 
 # buscar produtos 
+@app.route('/buscar', methods=['GET'])
 def buscar():
-    termo = input("nome do produto : ")
-    cursor.execute(f"SELECT * FROM produtos WHERE nome_produto LIKE ('{termo}')")
 
+    cursor.execute("SELECT * FROM produtos")
     produtos = cursor.fetchall()
     
-    if produtos:
-        for busca in produtos:
-            print(busca)
-    else:
-        print('protudo não encontrado! ')
+    return jsonify(produtos)
 
-# Excluir produtos (DELETE)
-def excluir():
-    deletar = int(input('ID do produto: '))
+# Excluir produtos 
+@app.route ('/excluir/<id_produto>', methods=['DELETE'])
+def excluir(id_produto):    
 
     cursor.execute("" \
     "DELETE FROM produtos WHERE id_produto = %s",
-    (deletar,)
+    (id_produto,)
     )
 
     banco.commit()
 
-    if cursor.rowcount > 0:
-        print('Produto excluído com sucesso!')
-    else:
-        print('Produto não encontrado.')
+    return jsonify('produto excluido !')
+
+app.run()
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce - Controle de Produtos</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container{
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card{
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            margin-bottom: 15px;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-cadastrar{
+            background: rgb(43, 8, 125);
+        }
+
+        .btn-buscar{
+            background: rgb(43, 8, 125);
+        }
+
+        .btn-excluir{
+            background: rgb(43, 8, 125);
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td{
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th{
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Sistema de Produtos</h1>
+
+        <!-- Cadastro -->
+        <div class="card">
+            <h2>Cadastrar Produto</h2>
+
+            <input type="text" placeholder="Nome do Produto">
+            <input type="number" placeholder="Preço">
+            <input type="number" placeholder="Quantidade em Estoque">
+
+            <button class="btn-cadastrar">
+                Cadastrar Produto
+            </button>
+        </div>
+
+        <!-- Busca -->
+        <div class="card">
+            <h2>Buscar Produto</h2>
+
+            <input type="text" placeholder="Digite o nome do produto">
+
+            <button class="btn-buscar">
+                Buscar
+            </button>
+        </div>
+
+        <!-- Exclusão -->
+        <div class="card">
+            <h2>Excluir Produto</h2>
+
+            <input type="number" placeholder="ID do Produto">
+
+            <button class="btn-excluir">
+                Excluir Produto
+            </button>
+        </div>
+
+        <!-- Listagem -->
+        <div class="card">
+            <h2>Lista de Produtos</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mouse Gamer</td>
+                        <td>R$ 120,00</td>
+                        <td>15</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Teclado Mecânico</td>
+                        <td>R$ 250,00</td>
+                        <td>8</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Monitor 24"</td>
+                        <td>R$ 900,00</td>
+                        <td>4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
